@@ -9,19 +9,20 @@ import {TodoListComponent} from '../todo-list/todo-list.component';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-
   todo = new Todo()
 
   @Input()
-  todoList: Todo[]
+  todoList: TodoListComponent
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(public todoService: TodoService) { }
+  ngOnInit(): void {}
 
   add() {
-    this.todoList.push(this.todo)
-    this.todo = new Todo()
+    this.todoService.save(this.todo).subscribe(
+      () => this.todoList.getTodos()
+    )
   }
 }
+
+
+
