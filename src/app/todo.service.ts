@@ -22,11 +22,3 @@ export class TodoService {
   }
 }
 
-
-export class TodoListComponent implements OnInit { todos: Todo[] = []
-  ngOnInit(): void { this.getAll() } constructor(public todoService: TodoService) {}
-  getAll() { this.todoService.getAll().subscribe(
-    data => this.todos = data )}
-  delete(id: number) { this.todoService.delete(id).subscribe(
-    () => this.getAll() )}
-}
